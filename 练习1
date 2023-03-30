@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>练习1</title>
+</head>
+<body>
+    <h1>
+    sample heading
+    </h1>
+    <a href=" ">
+        jump to bottom
+    </a >
+    <hr>
+    <h2 style="font-size: xxx-large;">
+    paragraph
+    </h2>
+    <p>
+        paragraph1
+    </p >
+    <p>
+        paragraph2 is a example about poem problem
+    </p >
+    <pre>
+        pre tag pair solves
+        the poem problem
+        of H T     M L 
+    </pre>
+    <h2>
+        text formating
+    </h2>
+    <p>
+        <em>emphasize</em> looks like with <i>italic</i>
+    <br>
+        <b>Bold</b> looks like <strong>Strong</strong>
+    <br>
+    <mark>hightlight</mark> <small>small</small> <del>delete</del> <ins>insert</ins> <sub>subscript</sub> <sup>superscript</sup>
+    </p >
+    <h2>
+        quote
+    </h2>
+    <p>
+        <abbr title="Hyper Text Markup Language">HTML</abbr>
+        <br>
+        <address>Hangzhou China</address>
+        <br>
+        <bdo dir="rtl">Hangzhou China</bdo>
+        <br>
+        <blockquote>this is a block to quote</blockquote>
+        <br>
+        <cite>Bible</cite> Jesus said <q>Forgive!</q>
+        <br id="bottom">
+    </p >
+</body>
+</html>
