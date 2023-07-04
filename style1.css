@@ -1,0 +1,121 @@
+body {
+    background-color: #fff;
+    color: #333;
+}
+
+a {
+    text-decoration: none;
+}
+
+header {
+    padding-left: 20px;
+}
+
+.button {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+}
+
+ul, ol, li {
+    padding-left: 0;
+    margin-left: 0;
+    list-style-type: none;
+}
+
+img{
+  object-fit: cover;
+  width: 300px;
+  height: 200px;
+}
+
+.logo,.label {
+    color: #fff;
+}
+
+#wrapper {
+    width: 100%;
+    margin: 0 auto;
+}
+
+#header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+}
+
+#header .logo {
+    padding: 10px;
+    font-size: 1.5em;
+}
+
+#header .icons {
+    list-style: none;
+    padding: 0;
+}
+
+#header .icons li {
+    display: inline;
+    margin-left: 20px;
+}
+
+#banner {
+    display: flex;
+    background-color: #ccc;
+    padding: 20px 0;
+}
+
+#banner .content,#banner .image{
+    padding: 20px;
+}
+
+.features {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.features article {
+    box-sizing: border-box;
+    width: 25%;
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+.posts {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.posts .image {
+    width: 100%;
+}
+
+.posts article {
+    box-sizing: border-box;
+    width: 33%;
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+#sidebar {
+    background-color: #ccc;
+    padding: 20px;
+    text-align: center;
+}
+
+#menu li {
+    display: inline;
+    margin-left: 20px;
+}
+
+#footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+}
+
+#footer a {
+    color:#fff;
+}
