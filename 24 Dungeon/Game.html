@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Game</title>
+    <link rel="stylesheet" href="gamestyle.css">
+</head>
+<body>
+    <div id="warpper">
+        <div id="gamearea">
+            <header style="font-size: 3em;">24 DUNGEON</header>
+            <div id="score-counter">
+                Score: <span id="score">0</span>
+            </div>
+            <br>
+            <div id="enemy">
+                <div class="enemy" id="enemy1">0</div>
+                <div class="enemy" id="enemy2">0</div>
+                <div class="enemy" id="enemy3">0</div>
+                <div class="enemy" id="enemy4">0</div>
+            </div>
+            <br>
+            <div id="weapons">
+                <button class="operators" id="plus" value="+">Plus +</button>
+                <button class="operators" id="minus" value="-">Minus -</button>
+                <button class="operators" id="multiply" value="×">Multiply ×</button>
+                <button class="operators" id="divide" value="÷">Divide ÷</button>
+                <button class="operators" id="brackets" value="()">Brackets ()</button>
+            </div>
+            <div id="solution"><input type="text" id="equation" placeholder="Defeat your enemies!" readonly></div>
+            <div id="status">
+                <progress class="status" id="health" value="20" max="20"></progress>
+                &nbsp;
+                <progress class="status" id="stamina" value="0" max="10"></progress>
+            </div>
+            <div id="function">
+                <button onclick="doMath()" id="domath" style="width: 50%;">24!</button>
+                <br>
+                <button onclick="startGame()" id="start">Start</button>
+                <button onclick="clearEquation()" id="clear">Clear</button>
+                <button onclick="" id="skip">Skip: <span id="skipchance">0</span></button>
+            </div>
+            <div id="tips">
+                <h1>Tips:</h1><br>
+                Use operators as weapons, and defeat the number monsters!<br>
+                Make them equal to 24 to eliminate them!<br><br>
+                For each round they stay in the fight, they deal 1 damage to you.<br>
+                But when you eliminate them, you gain scores!<br>
+                2 numbers = 3 scores<br>
+                3 numbers = 6 scores<br>
+                4 numbers = 10 scores<br><br>
+                Elite number monsters deal 2 damages per round,<br>
+                but once defeated, can bring you more benefits!
+            </div>
+        </div>
+    </div>
+    <script src="gamerule.js"></script>
+</body>
+</html>
