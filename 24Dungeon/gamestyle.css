@@ -1,6 +1,27 @@
-#gamearea {
-    text-align: center;
+body {
     background-color: grey;
+}
+
+.hidden {
+    display: none;
+}
+
+#wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#welcome {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 95vh;  /*这将使 div 的高度等于视口的高度*/
+}
+
+#gamearea, #welcome {
+    text-align: center;
 }
 
 header {
@@ -14,15 +35,16 @@ header {
     border-radius: 10px;
 }
 
-#enemy, #solution, #weapons, #buttons {
-    margin: 0 auto;
+#enemy, #solution, #weapons, #abilities, #helps {
+    margin: 10px auto;
     width: 50%;
     text-align: center;
 }
 
 #enemy {
     display: flex;
-    justify-content: space-around;
+    flex-wrap: wrap;
+    justify-content: space-around;    
 }
 
 .enemy {
@@ -34,7 +56,9 @@ header {
 
 #equation {
     text-align: center;
-    width: 80%;
+    width: 70%;
+    height: 25px;
+    border-radius: 5px;
 }
 
 #status {
@@ -43,26 +67,42 @@ header {
 
 button {
     width: 90px;
+    height: 30px;
+    border-radius: 5px;
 }
 
-#tips {
-    font-size: 0.5em;
+#tutorial {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
 }
 
-@keyframes blink {
-    0% {opacity: 1;}
-    50% {opacity: 0;}
-    100% {opacity: 1;}
+#tutorial-content {
+    width: 300px;
+    margin: 100px auto;
+    padding: 20px;
+    border-radius: 10px;
+    background: white;
 }
 
-.blink {
-    animation: blink 0.75s infinite;
+@keyframes floating {
+    0% {transform: translateY(0);}
+    50% {transform: translateY(-10px);}
+    100% {transform: translateY(0);}
+}
+
+.chosen {
+    animation: floating 2s infinite;
 }
 
 /*精英敌人类型*/
 .elite-double {
     color: orange;
 }
+
 
 .elite-heal {
     color: greenyellow;

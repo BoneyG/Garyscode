@@ -7,10 +7,31 @@
 </head>
 <body>
     <div id="warpper">
-        <div id="gamearea">
+        <div id="beforestart">
+            <div id="welcome">
+                <div id="gametitle">
+                    <header id="gt1" style="font-size: 10em;">24</header>
+                    <header id="gt2" style="font-size: 3em;">DUNGEON</header>
+                </div>
+                <p style="font-size: 0.75em;">
+                    This is a game based on the 24 point game.<br>
+                    You wake up in an endless dungeon, where is full of aggresive digit monsters!<br>
+                    All you have is five operators: +, -, ×, ÷ and ().<br>
+                    It seems like you can defeat those monsters by making them equal to 24!<br>
+                </p>
+                <p style="font-size: 0.5em;">
+                    这是一个基于24点游戏的游戏。<br>
+                    你在一个没有尽头的地牢中醒来，周围满是危险的数字怪兽！<br>
+                    你只有加减乘除和括号这五个运算符号，<br>
+                    似乎让怪物们等于24就可以消灭他们！<br>
+                </p>
+                <div style="padding: 20px;"><button onclick="startGame()" id="start">Start!</button></div>
+            </div>
+        </div>
+        <div class="hidden" id="gamearea">
             <header style="font-size: 3em;">24 DUNGEON</header>
             <div id="score-counter">
-                &nbsp;Score: <span id="score">0</span>&nbsp;
+                &nbsp;&nbsp;Score: <span id="score">0</span>&nbsp;&nbsp;
             </div>
             <br>
             <div id="enemy">
@@ -28,31 +49,39 @@
                 <button class="operators" id="divide" value="÷">Divide ÷</button>
                 <button class="operators" id="brackets" value="()">Brackets ()</button>
             </div>
-            <div id="solution"><input type="text" id="equation" placeholder="Defeat your enemies!" readonly></div>
+            <div id="solution">
+                <input type="text" id="equation" placeholder="Defeat your enemies!" readonly>
+                <button onclick="doMath()" id="domath">24!</button>
+            </div>
             <div id="status">
                 HP:<progress class="status" id="health" value="20" max="20"></progress>
                 &nbsp;
                 SP:<progress class="status" id="stamina" value="0" max="20"></progress>
             </div>
-            <div id="buttons">
-                <button onclick="doMath()" id="domath" style="width: 50%;">24!</button>
-                <br>
-                <button onclick="startGame()" id="start">Start</button>
-                <button onclick="fullyClear()" id="clear">Clear</button>
+            <div id="abilities">
                 <button onclick="deletion()" id="delete">Delete</button>
-                <button onclick="refresh()" id="refresh">Refresh: <span id="refreshchance">0</span></button>
+                <button onclick="fullyClear()" id="clear">Clear</button>
+                <button onclick="refreshAll()" id="refresh">Refresh: <span id="refreshchance">0</span></button>
             </div>
-            <div id="tips">
-                <h1>Tips:</h1><br>
-                Use operators as weapons, and defeat the number monsters!<br>
-                Make them equal to 24 to eliminate them!<br><br>
-                For each round they stay in the fight, they deal 1 damage to you.<br>
-                But when you eliminate them, you gain scores!<br>
-                2 numbers = 3 scores<br>
-                3 numbers = 6 scores<br>
-                4 numbers = 10 scores<br><br>
-                Elite number monsters deal 2 damages per round,<br>
-                but once defeated, can bring you more benefits!
+            <div id="helps">
+                <button onclick="restart()" id="restart">Restart</button>
+                <button onclick="getTutorial()" id="gettutorial">Tutorial</button>
+            </div>
+            <div class="hidden" id="tutorial">
+                <div id="tutorial-content">
+                    <p>
+                        Use operators as weapons, and defeat the number monsters!<br>
+                        Make them equal to 24 to eliminate them!<br><br>
+                        For each round they stay in the fight, they deal 1 damage to you.<br>
+                        But when you eliminate them, you gain scores!<br>
+                        2 numbers = 3 scores<br>
+                        3 numbers = 6 scores<br>
+                        4 numbers = 10 scores<br><br>
+                        Elite number monsters deal 2 damages per round,<br>
+                        but once defeated, can bring you more benefits!
+                    </p>
+                    <button onclick="leaveTutorial()" id="leave-tutorial">I see</button>
+                </div>
             </div>
         </div>
     </div>

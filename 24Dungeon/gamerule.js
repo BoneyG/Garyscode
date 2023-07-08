@@ -5,18 +5,11 @@ function randomNumber() {
 
 /*定义敌人*/
 var enemy = document.getElementsByClassName('enemy');
-
-/*确定敌人栏位数量*/
-var enemies = document.getElementsByClassName('enemy');
-var count = enemies.length;
+var count = enemy.length;
 
 var health = document.getElementById('health');
 var stamina = document.getElementById('stamina');
 var refresh = document.getElementById('refreshchance');
-var refreshChance = Number(refresh.innerHTML);
-
-/*重载页面判定*/
-var reload = 0;
 
 /*键盘控制*/
 document.addEventListener('keydown', function(e) {
@@ -49,24 +42,35 @@ function generateEnemy(e) {
 
 /*开始按钮*/
 function startGame() {
-    if (reload == 1) {
-        location.reload();
-    }else {
-        for (let i = 0; i <= count - 1; ++i) {
+    for (let i = 0; i <= count - 1; ++i) {
+        generateEnemy(enemy[i]);
+    }
+    document.getElementById('gamearea').classList.remove('hidden');
+    document.getElementById('beforestart').classList.add('hidden');
+}
+
+/*重置*/
+function restart() {
+    var result = confirm("Are you sure about restarting the game?\n你确定要重新开始吗？");
+    if (result) {
+        for (let i = 0; i <= count - 1; ++i) {    
+            clearEnemyStatus(enemy[i]);
             generateEnemy(enemy[i]);
         }
-        document.getElementById('start').innerHTML = "Restart";
+        document.getElementById('score').innerHTML = 0;
+        stamina.value = 0;
+        health.value = 20;
+        refresh.innerHTML = 0;
         fullyClear();
-        console.log(reload = 1);
     }
 }
 
 /*清除*/
 function fullyClear() {
     document.getElementById('equation').value = null;
-    console.log(blr = 0);
+    blr = 0;
     for (let i = 0; i <= count - 1; ++i) {
-        enemy[i].classList.remove('blink');
+        enemy[i].classList.remove('chosen');
     }
 }
 
@@ -81,17 +85,24 @@ function clearEnemyStatus(e) {
 /*删除*/
 function deletion() {
     var equation = document.getElementById('equation');
+    var lastNum = equation.value.slice(-1);
     equation.value = equation.value.slice(0,-1);
+    for (let i = 0; i <= count - 1; ++i) {
+        if (enemy[i].innerHTML === lastNum && enemy[i].classList.contains('chosen')) {
+            enemy[i].classList.remove('chosen');
+            break;
+        }
+    }
 }
 
 /*选中敌人*/
 function chooseEnemy(e) {
     var chosenEnemy = e.target;
-    if (chosenEnemy.classList.contains('blink')) {
+    if (chosenEnemy.classList.contains('chosen')) {
         // 如果元素已经被选中，不执行后续操作
         return;
     }
-    chosenEnemy.classList.add('blink');
+    chosenEnemy.classList.add('chosen');
     document.getElementById('equation').value += chosenEnemy.innerHTML;
 }
 
@@ -130,8 +141,7 @@ function doMath() {
         var result = eval(newEquation);
     } catch (e) {
         if (e instanceof SyntaxError) {
-            alert("Oops, that does not equals to 24!");
-            fullyClear();
+            result = 0;
         }
     }
     if (result == 24) {
@@ -149,8 +159,9 @@ var double = 0;
 function settle() {
     c = 0;
     d = 0;
-    for (i = 0; i <= count - 1; ++i) {
-        if (enemy[i].classList.contains('blink')) {
+    var refreshChance = Number(refresh.innerHTML);
+    for (let i = 0; i <= count - 1; ++i) {
+        if (enemy[i].classList.contains('chosen')) {
             /*计算使用的数字个数*/
             ++c;
             if (enemy[i].classList.contains('elite')) {
@@ -184,7 +195,7 @@ function settle() {
 /*计算积分*/
 function calScore() {
     var score = 0;
-    for (i = 0; i <= c; ++i) {
+    for (let i = 0; i <= c; ++i) {
         var score = score + i;
     }
     score = score * (2 ** double);
@@ -199,6 +210,7 @@ function calStamina() {
     stamina.value = stamina.value + c;
     if (stamina.value == 20) {
         stamina.value = stamina.value - 20;
+        var refreshChance = Number(refresh.innerHTML);
         refresh.innerHTML = refreshChance + 1;
     }
 }
@@ -212,13 +224,24 @@ function calDamage() {
     }
 }
 
-function refresh() {
+function refreshAll() {
+    var refreshChance = Number(refresh.innerHTML);
     if (refreshChance == 0) {
         alert("You don't have enough chance to refresh!");
     }else {
-        --refresh.innerHTML;
+        --refreshChance;
+        refresh.innerHTML = refreshChance;
         for (let i = 0; i <= count - 1; ++i) {
             generateEnemy(enemy[i]);
         }
+        clearAll();
     }
+}
+
+function getTutorial() {
+    document.getElementById('tutorial').classList.remove('hidden');
+}
+
+function leaveTutorial() {
+    document.getElementById('tutorial').classList.add('hidden');
 }
