@@ -7,84 +7,86 @@
 </head>
 <body>
     <div id="warpper">
-        <div id="beforestart">
+        <div id="beforegame">
             <div id="welcome">
                 <div id="gametitle">
                     <header id="gt1" style="font-size: 10em;">24</header>
                     <header id="gt2" style="font-size: 3em;">DUNGEON</header>
                 </div>
-                <p style="font-size: 0.75em;">
-                    This is a game based on the 24 point game.<br>
-                    You wake up in an endless dungeon, where is full of aggresive digit monsters!<br>
-                    All you have is five operators: +, -, ×, ÷ and ().<br>
-                    It seems like you can defeat those monsters by making them equal to 24!<br>
-                </p>
-                <p style="font-size: 0.5em;">
-                    这是一个基于24点游戏的游戏。<br>
-                    你在一个没有尽头的地牢中醒来，周围满是危险的数字怪兽！<br>
-                    你只有加减乘除和括号这五个运算符号，<br>
-                    似乎让怪物们等于24就可以消灭他们！<br>
-                </p>
-                <div style="padding: 20px;"><button onclick="startGame()" id="start">Start!</button></div>
-            </div>
-        </div>
-        <div class="hidden" id="gamearea">
-            <header style="font-size: 3em;">24 DUNGEON</header>
-            <div id="score-counter">
-                &nbsp;&nbsp;Score: <span id="score">0</span>&nbsp;&nbsp;
-            </div>
-            <br>
-            <div id="enemy">
-                <div class="enemy" id="enemy1">0</div>
-                <div class="enemy" id="enemy2">0</div>
-                <div class="enemy" id="enemy3">0</div>
-                <div class="enemy" id="enemy4">0</div>
-                <div class="enemy" id="enemy5">0</div>
-            </div>
-            <br>
-            <div id="weapons">
-                <button class="operators" id="plus" value="+">Plus +</button>
-                <button class="operators" id="minus" value="-">Minus -</button>
-                <button class="operators" id="multiply" value="×">Multiply ×</button>
-                <button class="operators" id="divide" value="÷">Divide ÷</button>
-                <button class="operators" id="brackets" value="()">Brackets ()</button>
-            </div>
-            <div id="solution">
-                <input type="text" id="equation" placeholder="Defeat your enemies!" readonly>
-                <button onclick="doMath()" id="domath">24!</button>
-            </div>
-            <div id="status">
-                HP:<progress class="status" id="health" value="20" max="20"></progress>
-                &nbsp;
-                SP:<progress class="status" id="stamina" value="0" max="20"></progress>
-            </div>
-            <div id="abilities">
-                <button onclick="deletion()" id="delete">Delete</button>
-                <button onclick="fullyClear()" id="clear">Clear</button>
-                <button onclick="refreshAll()" id="refresh">Refresh: <span id="refreshchance">0</span></button>
-            </div>
-            <div id="helps">
-                <button onclick="restart()" id="restart">Restart</button>
-                <button onclick="getTutorial()" id="gettutorial">Tutorial</button>
-            </div>
-            <div class="hidden" id="tutorial">
-                <div id="tutorial-content">
-                    <p>
-                        Use operators as weapons, and defeat the number monsters!<br>
-                        Make them equal to 24 to eliminate them!<br><br>
-                        For each round they stay in the fight, they deal 1 damage to you.<br>
-                        But when you eliminate them, you gain scores!<br>
-                        2 numbers = 3 scores<br>
-                        3 numbers = 6 scores<br>
-                        4 numbers = 10 scores<br><br>
-                        Elite number monsters deal 2 damages per round,<br>
-                        but once defeated, can bring you more benefits!
-                    </p>
-                    <button onclick="leaveTutorial()" id="leave-tutorial">I see</button>
+                <p id="gameIntro" style="font-size: 0.75em;"></p>
+                <div style="padding: 20px;">
+                    <button onclick="startGame()" id="start">Start!</button>
+                    <button id="language">English</button>
                 </div>
             </div>
         </div>
+        <div class="hidden" id="ingame">
+            <div id="gamearea">
+                <header style="font-size: 3em;">24 DUNGEON</header>
+                <div id="score-counter">
+                    <div class="hidden valueDisplay" id="addScore">0</div>
+                    <div>&nbsp;&nbsp;<span id="score:"></span> <span id="score">0</span>&nbsp;&nbsp;</div>
+                </div>
+                <br>
+                <div id="enemy">
+                    <div class="enemy" id="enemy1">0</div>
+                    <div class="enemy" id="enemy2">0</div>
+                    <div class="enemy" id="enemy3">0</div>
+                    <div class="enemy" id="enemy4">0</div>
+                    <div class="enemy" id="enemy5">0</div>
+                </div>
+                <br>
+                <div id="weapons">
+                    <button class="operators" id="plus" value="+">+</button>
+                    <button class="operators" id="minus" value="-">-</button>
+                    <button class="operators" id="multiply" value="×">×</button>
+                    <button class="operators" id="divide" value="÷">÷</button>
+                    <button class="operators" id="brackets" value="()">()</button>
+                </div>
+                <div id="solution">
+                    <input type="text" id="equation" readonly>
+                    <button onclick="doMath()" id="domath">24!</button>
+                </div>
+                <div id="status">
+                    <div id="healthBar">
+                        <div class="hidden valueDisplay" id="damage">0</div>
+                        <div class="hidden valueDisplay" id="heal">0</div>
+                        HP:<progress class="status" id="health" value="20" max="20"></progress>
+                    </div>
+                    <div id="staminaBar">
+                        <div class="hidden valueDisplay" id="addStamina">0</div>
+                        SP:<progress class="status" id="stamina" value="0" max="15"></progress>
+                    </div>
+                </div>
+                <div id="abilities">
+                    <button onclick="deletion()" id="delete"></button>
+                    <button onclick="fullyClear()" id="clear"></button>
+                    <button onclick="refreshOne()" id="refresh"><span id="refresh:"></span> <span id="refreshchance">0</span></button>
+                </div>
+                <div id="helps">
+                    <button onclick="resetButton()" id="reset"></button>
+                    <button onclick="getTutorial()" id="gettutorial"></button>
+                </div>
+            </div>
+        </div>
+        <div class="hidden" id="tutorial">
+            <div id="tutorial-content">
+                <p id="tutorial1"></p>
+                <p id="tutorial2"></p>
+                <p id="tutorial3"></p>
+                <p id="tutorial4"></p>
+                <button onclick="leaveTutorial()" id="leavetutorial"></button>
+            </div>
+        </div>
+        <div class="hidden" id="aftergame">
+            <div id="summary"></div>
+        </div>
+        <div class="hidden" id="alertMessage">
+            <div id="not24"></div>
+            <div id="confirm"></div>
+        </div>
     </div>
     <script src="gamerule.js"></script>
+    <script src="language.js"></script>
 </body>
 </html>
